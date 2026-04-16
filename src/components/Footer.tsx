@@ -1,32 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { BioFusionMark } from "./Header";
 
 const pharmacyPartners = [
-  {
-    name: "RedRock Pharmacy",
-    url: "https://www.redrockhomepharmacy.com/",
-    address: "1240 E 100 S #220, St. George, UT 84790",
-    phone: "801-433-9500",
-  },
-  {
-    name: "Health Warehouse",
-    url: "https://www.healthwarehouse.com",
-    address: "7107 Industrial Rd. Florence, KY 41042",
-    phone: "800-748-7001",
-  },
-  {
-    name: "Precision Medicine",
-    url: "http://precisionmeds.com/",
-    address: "2657 Merrick Road Bellmore, NY 11710",
-    phone: "516-833-6262",
-  },
-  {
-    name: "Triad Rx",
-    url: "https://www.triadrx.us",
-    address: "26258 Pollard Road, Daphne, AL 36526",
-    phone: "251-380-7630",
-  },
+  { name: "RedRock Pharmacy", url: "https://www.redrockhomepharmacy.com/", address: "1240 E 100 S #220, St. George, UT 84790", phone: "801-433-9500" },
+  { name: "Health Warehouse", url: "https://www.healthwarehouse.com", address: "7107 Industrial Rd. Florence, KY 41042", phone: "800-748-7001" },
+  { name: "Precision Medicine", url: "http://precisionmeds.com/", address: "2657 Merrick Road Bellmore, NY 11710", phone: "516-833-6262" },
+  { name: "Triad Rx", url: "https://www.triadrx.us", address: "26258 Pollard Road, Daphne, AL 36526", phone: "251-380-7630" },
 ];
 
 const legalLinks = [
@@ -41,53 +22,40 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100">
-      {/* Contact bar */}
-      <div className="max-w-[1100px] mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-12">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-              <circle cx="18" cy="18" r="6" fill="#4FB2E4" />
-              <circle cx="10" cy="10" r="4" fill="#4FB2E4" opacity="0.7" />
-              <circle cx="26" cy="10" r="4" fill="#4FB2E4" opacity="0.7" />
-              <circle cx="10" cy="26" r="4" fill="#4FB2E4" opacity="0.7" />
-              <circle cx="26" cy="26" r="4" fill="#4FB2E4" opacity="0.7" />
-              <line x1="14" y1="14" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-              <line x1="22" y1="14" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-              <line x1="14" y1="22" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-              <line x1="22" y1="22" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-            </svg>
-            <span className="text-dark font-bold text-lg">BioFusion</span>
+    <footer className="bg-white">
+      <div className="max-w-[1200px] mx-auto px-8 pt-20 pb-12">
+        {/* Top bar */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-[#EEF1F5]">
+          <Link href="/" className="flex items-center gap-2.5">
+            <BioFusionMark size={26} />
+            <span className="text-ink font-semibold text-lg">BioFusion</span>
           </Link>
-
-          {/* Contact info */}
-          <div className="flex flex-col sm:flex-row gap-6 text-sm text-muted">
-            <div className="flex items-center gap-2">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="2" y="3" width="12" height="10" rx="2" stroke="#9CA3AF" strokeWidth="1.5" />
-                <path d="M2 5l6 4 6-4" stroke="#9CA3AF" strokeWidth="1.5" />
+          <div className="flex flex-col sm:flex-row gap-x-8 gap-y-3 text-[13.5px] text-ink-muted">
+            <a href="mailto:support@biofusion.co" className="flex items-center gap-2 hover:text-ink transition-colors">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
+                <path d="M1.5 4.5l5.5 3.5L12.5 4.5" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
               </svg>
-              <span>support@biofusion.co</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 2h3l1.5 3-2 1.5a9 9 0 004 4L11 9l3 1.5V14h-1A11 11 0 013 3V2z" stroke="#9CA3AF" strokeWidth="1.5" />
+              support@biofusion.co
+            </a>
+            <a href="tel:8332463874" className="flex items-center gap-2 hover:text-ink transition-colors">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 1.5h2.5l1.3 3-1.7 1.3a8 8 0 003.6 3.6l1.3-1.7 3 1.3v2.5h-1A11 11 0 012.5 2.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
               </svg>
-              <span>(833) 246-3874</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M8 1C5.2 1 3 3.7 3 5.5 3 9.5 8 15 8 15s5-5.5 5-9.5C13 3.7 10.8 1 8 1z" stroke="#9CA3AF" strokeWidth="1.5" />
-                <circle cx="8" cy="5.5" r="1.5" stroke="#9CA3AF" strokeWidth="1.5" />
+              (833) 246-3874
+            </a>
+            <span className="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1.5C4.8 1.5 3 3.5 3 5.4c0 3.6 4 7.1 4 7.1s4-3.5 4-7.1c0-1.9-1.8-3.9-4-3.9z" stroke="currentColor" strokeWidth="1.2"/>
+                <circle cx="7" cy="5.4" r="1.3" stroke="currentColor" strokeWidth="1.2"/>
               </svg>
-              <span>Houston, TX</span>
-            </div>
+              Houston, TX
+            </span>
           </div>
         </div>
 
         {/* Disclaimers */}
-        <div className="space-y-4 text-[10px] text-muted/60 leading-relaxed mb-12">
+        <div className="space-y-3.5 text-[11px] text-ink-mute2 leading-relaxed py-12 max-w-4xl">
           <p>
             *The assessment made available on the BioFusion website does not
             create a doctor-patient relationship between you and BioFusion
@@ -97,12 +65,10 @@ export default function Footer() {
           <p>
             We are partnered with multiple USA certified pharmacies to bring the
             best product and overall experience to you.{" "}
-            <span className="font-semibold text-muted/80">
-              Pharmacy Providers
-            </span>
+            <span className="font-semibold text-ink-muted">Pharmacy Providers</span>
           </p>
           <p>
-            *Results vary based on starting weight and program adherence. Inches
+            Results vary based on starting weight and program adherence. Inches
             lost from hips, waist, chest, thighs, and other areas will differ
             between individuals.
           </p>
@@ -118,37 +84,28 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Pharmacy partners grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Pharmacy partners */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-[#EEF1F5]">
           {pharmacyPartners.map((p) => (
-            <div key={p.name} className="space-y-1">
-              <h4 className="font-semibold text-sm">{p.name}</h4>
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-brand hover:underline block truncate"
-              >
+            <div key={p.name} className="space-y-1.5">
+              <h4 className="font-semibold text-[13.5px] text-ink">{p.name}</h4>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-[12px] text-brand hover:underline block truncate">
                 {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
               </a>
-              <p className="text-xs text-muted">{p.address}</p>
-              <p className="text-xs text-muted">{p.phone}</p>
+              <p className="text-[12px] text-ink-muted">{p.address}</p>
+              <p className="text-[12px] text-ink-muted">{p.phone}</p>
             </div>
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-gray-100 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs text-muted">
-            &copy; {new Date().getFullYear()} BioFusion. All rights reserved
+        {/* Bottom */}
+        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <p className="text-[12px] text-ink-mute2">
+            &copy; {new Date().getFullYear()} BioFusion. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-2">
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
             {legalLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-xs text-muted hover:text-dark transition-colors"
-              >
+              <Link key={l.href} href={l.href} className="text-[12px] text-ink-muted hover:text-ink transition-colors">
                 {l.label}
               </Link>
             ))}

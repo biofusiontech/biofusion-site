@@ -4,36 +4,48 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-brand-hero via-brand-hero to-brand-hero/80 flex flex-col items-center justify-center text-center px-6 pt-24 pb-48 overflow-hidden">
-      {/* Large watermark text behind */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span className="text-[20vw] font-black text-white/[0.04] tracking-tighter whitespace-nowrap">
+    <section className="relative bg-hero-gradient pt-32 pb-64 px-6 overflow-hidden">
+      {/* Massive subtle BIOFUSION watermark behind */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none">
+        <span
+          className="font-bold text-white/[0.05] whitespace-nowrap leading-none"
+          style={{
+            fontSize: "clamp(180px, 22vw, 380px)",
+            letterSpacing: "-0.04em",
+          }}
+        >
           BIOFUSION
         </span>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative z-10 max-w-4xl"
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="relative z-10 max-w-5xl mx-auto text-center"
       >
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <span className="text-white/70 text-sm tracking-wide">Join</span>
-          <span className="text-white font-bold text-sm">500,000+</span>
-          <span className="text-white/70 text-sm tracking-wide">
-            BioFusion patients
-          </span>
+        {/* Patient counter pill */}
+        <div className="flex items-center justify-center gap-1.5 mb-6 text-sm">
+          <span className="text-white/60">Join</span>
+          <span className="text-white font-semibold">500,000+</span>
+          <span className="text-white/60">BioFusion patients</span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] mb-6">
+        {/* Headline - 2 lines, 70px on desktop matching MEDVi */}
+        <h1
+          className="text-white font-semibold leading-[1.05] mb-7"
+          style={{
+            fontSize: "clamp(40px, 5.5vw, 72px)",
+            letterSpacing: "-0.025em",
+          }}
+        >
           Healthcare,
           <br />
-          <span className="font-accent italic text-brand-light">redefined</span>{" "}
+          <span className="font-italic-accent text-brand-soft">redefined</span>{" "}
           for real life.
         </h1>
 
-        <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="text-white/70 text-base md:text-[17px] max-w-xl mx-auto leading-relaxed">
           We provide medical care online—simple, direct, and led by licensed
           providers. No waiting rooms. No unnecessary steps. Just care that
           works.

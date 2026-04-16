@@ -1,63 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Weight Loss", href: "#weight-loss" },
-  { label: "Peptides & Longevity", href: "#peptides" },
-  { label: "Men's Health", href: "#mens-health" },
-  { label: "Women's Health", href: "#womens-health" },
+  { label: "Weight Loss", href: "/#weight-loss" },
+  { label: "Peptides & Longevity", href: "/#peptides" },
+  { label: "Men's Health", href: "/#mens-health" },
+  { label: "Women's Health", href: "/#womens-health" },
 ];
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-hero/95 backdrop-blur-md">
-      <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 36 36"
-            fill="none"
-            className="shrink-0"
-          >
-            <circle cx="18" cy="18" r="6" fill="#4FB2E4" />
-            <circle cx="10" cy="10" r="4" fill="#4FB2E4" opacity="0.7" />
-            <circle cx="26" cy="10" r="4" fill="#4FB2E4" opacity="0.7" />
-            <circle cx="10" cy="26" r="4" fill="#4FB2E4" opacity="0.7" />
-            <circle cx="26" cy="26" r="4" fill="#4FB2E4" opacity="0.7" />
-            <line x1="14" y1="14" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-            <line x1="22" y1="14" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-            <line x1="14" y1="22" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-            <line x1="22" y1="22" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="2" opacity="0.5" />
-          </svg>
-          <span className="text-white text-xl font-bold tracking-tight">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        scrolled || open ? "bg-[#0F3A5F]/95 backdrop-blur" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-[1280px] mx-auto px-8 py-5 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <BioFusionMark />
+          <span className="text-white font-semibold text-lg tracking-tight">
             BioFusion
           </span>
         </Link>
 
-        {/* Desktop nav - hidden, uses hamburger like MEDVi */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="relative w-8 h-6 flex flex-col justify-between items-end group cursor-pointer"
+          onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          className="relative w-7 h-5 flex flex-col justify-between cursor-pointer"
         >
           <span
-            className={`block h-[2px] bg-white transition-all duration-300 ${
-              menuOpen ? "w-8 rotate-45 translate-y-[11px]" : "w-8"
+            className={`block h-[1.5px] bg-white transition-all duration-300 origin-left ${
+              open ? "rotate-45 translate-y-[1px] w-7" : "w-7"
             }`}
           />
           <span
-            className={`block h-[2px] bg-white transition-all duration-300 ${
-              menuOpen ? "opacity-0 w-6" : "w-6"
+            className={`block h-[1.5px] bg-white transition-opacity duration-200 ${
+              open ? "opacity-0 w-5" : "w-5 ml-auto"
             }`}
           />
           <span
-            className={`block h-[2px] bg-white transition-all duration-300 ${
-              menuOpen ? "w-8 -rotate-45 -translate-y-[11px]" : "w-4"
+            className={`block h-[1.5px] bg-white transition-all duration-300 origin-left ${
+              open ? "-rotate-45 -translate-y-[1px] w-7" : "w-6 ml-auto"
             }`}
           />
         </button>
@@ -65,20 +60,20 @@ export default function Header() {
 
       {/* Slide-down menu */}
       <div
-        className={`absolute top-full left-0 right-0 bg-brand-hero/98 backdrop-blur-md transition-all duration-500 overflow-hidden ${
-          menuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        className={`absolute top-full inset-x-0 bg-[#0F3A5F]/98 backdrop-blur-md overflow-hidden transition-all duration-500 ${
+          open ? "max-h-[400px]" : "max-h-0"
         }`}
       >
-        <nav className="max-w-[1400px] mx-auto px-6 py-8">
-          <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+        <nav className="max-w-[1280px] mx-auto px-8 py-10">
+          <ul className="space-y-5">
+            {navLinks.map((l) => (
+              <li key={l.href}>
                 <a
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-white/80 hover:text-white text-lg font-medium transition-colors"
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-white/75 hover:text-white text-2xl font-medium transition-colors block"
                 >
-                  {link.label}
+                  {l.label}
                 </a>
               </li>
             ))}
@@ -86,5 +81,21 @@ export default function Header() {
         </nav>
       </div>
     </header>
+  );
+}
+
+export function BioFusionMark({ size = 28 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="5.5" fill="#4FB2E4" />
+      <circle cx="9" cy="9" r="3.8" fill="#4FB2E4" opacity="0.75" />
+      <circle cx="27" cy="9" r="3.8" fill="#4FB2E4" opacity="0.75" />
+      <circle cx="9" cy="27" r="3.8" fill="#4FB2E4" opacity="0.75" />
+      <circle cx="27" cy="27" r="3.8" fill="#4FB2E4" opacity="0.75" />
+      <line x1="13" y1="13" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="1.5" opacity="0.55" />
+      <line x1="23" y1="13" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="1.5" opacity="0.55" />
+      <line x1="13" y1="23" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="1.5" opacity="0.55" />
+      <line x1="23" y1="23" x2="18" y2="18" stroke="#4FB2E4" strokeWidth="1.5" opacity="0.55" />
+    </svg>
   );
 }

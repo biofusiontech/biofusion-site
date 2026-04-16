@@ -8,38 +8,42 @@ export default function ValueProps() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 px-6 bg-white" ref={ref}>
-      <div className="max-w-[1100px] mx-auto text-center space-y-16">
+    <section className="py-32 px-6 bg-white" ref={ref}>
+      <div className="max-w-[1100px] mx-auto text-center space-y-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="space-y-3"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-ink-muted">
             Better is possible—and we built for it.
-          </h2>
-          <h3 className="text-2xl md:text-3xl font-bold mt-4">
+          </p>
+          <h2
+            className="font-semibold leading-[1.1] tracking-tight"
+            style={{ fontSize: "clamp(34px, 3.6vw, 52px)" }}
+          >
             Modern healthcare,{" "}
-            <span className="text-brand font-accent italic">
+            <span className="font-italic-accent text-brand">
               built around you
             </span>
-          </h3>
+          </h2>
         </motion.div>
 
-        {/* Stats / trust indicators */}
+        {/* Care coaching block */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-brand-bg/40 rounded-3xl p-8 md:p-12"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="bg-[#F1F8FD] rounded-[32px] p-12 md:p-16 max-w-3xl mx-auto"
         >
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-brand mb-6">
+          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-brand mb-5">
             With you from start to success
           </p>
-          <h3 className="text-xl md:text-2xl font-bold mb-4">
+          <h3 className="text-[24px] md:text-[30px] font-semibold leading-tight mb-5">
             Care coaching and nutrition support
           </h3>
-          <p className="text-muted text-sm max-w-2xl mx-auto leading-relaxed">
+          <p className="text-ink-muted text-[15px] leading-relaxed max-w-xl mx-auto">
             Our care coaching team, led by certified medical assistants and
             registered dietitians, helps answer questions and keeps your care on
             track. From your first consultation through ongoing support, we are
@@ -50,12 +54,15 @@ export default function ValueProps() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h3 className="text-xl md:text-2xl font-bold leading-snug max-w-3xl mx-auto">
+          <h3
+            className="font-semibold leading-[1.2] max-w-3xl mx-auto"
+            style={{ fontSize: "clamp(22px, 2.2vw, 32px)" }}
+          >
             We&apos;re creating a better healthcare experience, and the details
             matter.{" "}
-            <span className="text-brand font-accent italic">
+            <span className="font-italic-accent text-brand">
               We&apos;re here for those details.
             </span>
           </h3>

@@ -1,176 +1,201 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-interface Feature {
-  icon?: string;
-  text: string;
-}
 
 interface ProductSectionProps {
   id: string;
   badge: string;
-  heading: string;
-  headingAccent?: string;
-  headingRest?: string;
+  headingMain: string;
+  headingAccent: string;
+  headingTail: string;
   subheading: string;
   description: string;
   ctaText: string;
   ctaHref?: string;
-  features: Feature[];
+  comingSoon?: boolean;
+  features: string[];
   featureTitle: string;
   productImage: string;
+  productBg: string;
   lifestyleImage1: string;
   lifestyleImage2: string;
-  bgColor?: string;
+  tintClass?: string;
   accentColor?: string;
+  accentCheckBg?: string;
   reversed?: boolean;
 }
 
-function CheckIcon({ color = "#4FB2E4" }: { color?: string }) {
+function Check({ bg = "#4FB2E4" }: { bg?: string }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <circle cx="10" cy="10" r="10" fill={color} opacity="0.15" />
-      <path
-        d="M6 10L9 13L14 7"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <span
+      className="inline-flex items-center justify-center w-5 h-5 rounded-full shrink-0"
+      style={{ background: `${bg}18` }}
+    >
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+        <path
+          d="M2 5.5L4.5 8L9 2.5"
+          stroke={bg}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
   );
 }
 
 export default function ProductSection({
   id,
   badge,
-  heading,
+  headingMain,
   headingAccent,
-  headingRest,
+  headingTail,
   subheading,
   description,
   ctaText,
   ctaHref,
+  comingSoon,
   features,
   featureTitle,
   productImage,
+  productBg,
   lifestyleImage1,
   lifestyleImage2,
-  bgColor = "bg-white",
+  tintClass = "",
   accentColor = "#4FB2E4",
+  accentCheckBg = "#4FB2E4",
   reversed = false,
 }: ProductSectionProps) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id={id} className={`${bgColor} py-24 px-6 overflow-hidden`}>
-      <div className="max-w-[1100px] mx-auto" ref={ref}>
-        {/* Top row: Product image + lifestyle images + text */}
-        <div
-          className={`flex flex-col lg:flex-row gap-12 items-start ${
-            reversed ? "lg:flex-row-reverse" : ""
-          }`}
+    <section
+      id={id}
+      className={`relative py-28 md:py-40 px-6 ${tintClass}`}
+    >
+      <div
+        className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-14 lg:gap-20 items-start"
+        ref={ref}
+      >
+        {/* Left column: product image + feature list (or reversed) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className={`space-y-10 ${reversed ? "lg:order-2" : ""}`}
         >
-          {/* Left: Product image + features */}
-          <motion.div
-            initial={{ opacity: 0, x: reversed ? 40 : -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="flex-1 space-y-8"
+          <div
+            className="rounded-[32px] overflow-hidden aspect-[5/4] relative"
+            style={{ background: productBg }}
           >
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 aspect-[4/3]">
-              <img
-                src={productImage}
-                alt={heading}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={productImage}
+              alt=""
+              className="w-full h-full object-cover mix-blend-multiply"
+            />
+          </div>
 
-            {/* Feature list */}
-            <div>
-              <p className="text-sm font-medium text-muted mb-4">
-                {featureTitle}
-              </p>
-              <div className="space-y-3">
-                {features.map((f, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckIcon color={accentColor} />
-                    <span className="text-sm text-dark-soft">{f.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-ink-muted mb-5">
+              {featureTitle}
+            </p>
+            <ul className="space-y-3.5">
+              {features.map((f, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <Check bg={accentCheckBg} />
+                  <span className="text-[14.5px] text-ink-soft">{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
 
-          {/* Right: Badge + heading + description + CTA + images */}
-          <motion.div
-            initial={{ opacity: 0, x: reversed ? -40 : 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex-1 space-y-6"
-          >
-            <span
-              className="text-xs font-bold tracking-[0.2em] uppercase"
+        {/* Right column: heading, photos, description, CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+          className={`space-y-10 ${reversed ? "lg:order-1" : ""}`}
+        >
+          <div>
+            <p
+              className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-5"
               style={{ color: accentColor }}
             >
               {badge}
-            </span>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              {heading}{" "}
-              {headingAccent && (
-                <span className="font-accent italic" style={{ color: accentColor }}>
-                  {headingAccent}
-                </span>
-              )}
-              {headingRest && <> {headingRest}</>}
+            </p>
+            <h2
+              className="font-semibold text-ink leading-[1.1] tracking-tight"
+              style={{ fontSize: "clamp(34px, 3.6vw, 52px)" }}
+            >
+              {headingMain}{" "}
+              <span
+                className="font-italic-accent"
+                style={{ color: accentColor }}
+              >
+                {headingAccent}
+              </span>{" "}
+              {headingTail}
             </h2>
+          </div>
 
-            {/* Two lifestyle images side by side */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl overflow-hidden aspect-[3/4]">
-                <img
-                  src={lifestyleImage1}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden aspect-[3/4]">
-                <img
-                  src={lifestyleImage2}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          {/* Two vertical lifestyle photos */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-[24px] overflow-hidden aspect-[3/4]">
+              <img
+                src={lifestyleImage1}
+                alt=""
+                className="w-full h-full object-cover"
+              />
             </div>
+            <div className="rounded-[24px] overflow-hidden aspect-[3/4]">
+              <img
+                src={lifestyleImage2}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
 
-            <h3 className="text-xl md:text-2xl font-semibold">{subheading}</h3>
-
-            <p className="text-muted text-sm leading-relaxed">{description}</p>
-
-            {ctaHref ? (
+          <div className="space-y-5">
+            <h3
+              className="font-semibold text-ink leading-[1.2]"
+              style={{ fontSize: "clamp(22px, 2.1vw, 30px)" }}
+            >
+              {subheading}
+            </h3>
+            <p className="text-ink-muted text-[15px] leading-relaxed max-w-lg">
+              {description}
+            </p>
+            {comingSoon ? (
+              <span
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-[13px] font-medium text-white/85"
+                style={{ background: `${accentColor}88` }}
+              >
+                {ctaText}
+              </span>
+            ) : (
               <a
                 href={ctaHref}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-white text-sm font-semibold transition-all hover:opacity-90 hover:shadow-lg"
-                style={{ backgroundColor: accentColor }}
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-[13px] font-medium text-white transition-all hover:brightness-110 hover:shadow-lg"
+                style={{ background: accentColor }}
               >
                 {ctaText}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2.5 6h7M9.5 6L6 2.5M9.5 6L6 9.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
-            ) : (
-              <button
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-white/90 text-sm font-semibold cursor-default"
-                style={{ backgroundColor: `${accentColor}60` }}
-                disabled
-              >
-                {ctaText}
-              </button>
             )}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
