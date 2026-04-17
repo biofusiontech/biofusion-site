@@ -13,7 +13,7 @@ export default function MensHealthSection() {
       subheading="Care designed to help you feel stronger, sharper, and more in control"
       description="Doctor-guided care for hormones, energy, and performance, with treatment plans tailored to your goals and lifestyle."
       ctaText="Get Started"
-      ctaHref="#"
+      ctaHref="/get-started/mens-health"
       features={[
         "Physical performance",
         "Hormone balance",

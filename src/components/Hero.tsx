@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -45,11 +46,27 @@ export default function Hero() {
           for real life.
         </h1>
 
-        <p className="text-white/70 text-base md:text-[17px] max-w-xl mx-auto leading-relaxed">
+        <p className="text-white/70 text-base md:text-[17px] max-w-xl mx-auto leading-relaxed mb-9">
           We provide medical care online—simple, direct, and led by licensed
           providers. No waiting rooms. No unnecessary steps. Just care that
           works.
         </p>
+
+        <Link
+          href="/get-started/weight-loss"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand text-white text-[14px] font-semibold hover:brightness-110 hover:shadow-2xl hover:shadow-brand/30 transition-all"
+        >
+          Start your assessment
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M3 7h8m0 0L7.5 3.5M11 7L7.5 10.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
       </motion.div>
     </section>
   );

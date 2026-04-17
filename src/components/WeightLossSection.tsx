@@ -14,7 +14,7 @@ export default function WeightLossSection() {
         subheading="A smarter approach to weight loss, built around you"
         description="Find the right GLP-1 medication with the confidence that comes from knowing it is doctor-approved and right for your body. Personalized care plans, ongoing check-ins, and dedicated support—all in one place."
         ctaText="Get Started"
-        ctaHref="#"
+        ctaHref="/get-started/weight-loss"
         features={[
           "Prescription to fast, effective GLP-1",
           "1:1 physician guidance",

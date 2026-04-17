@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const categories = [
   {
     title: "Weight Loss",
-    href: "#weight-loss",
+    href: "/get-started/weight-loss",
     image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=420&h=320&fit=crop",
     bg: "bg-[#F2F8F4]",
   },
@@ -17,7 +17,7 @@ const categories = [
   },
   {
     title: "Men's Health",
-    href: "#mens-health",
+    href: "/get-started/mens-health",
     image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=420&h=320&fit=crop",
     bg: "bg-[#FBF6EE]",
   },

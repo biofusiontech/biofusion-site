@@ -35,11 +35,18 @@ export default function Header() {
           </span>
         </Link>
 
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          className="relative w-7 h-5 flex flex-col justify-between cursor-pointer"
-        >
+        <div className="flex items-center gap-5">
+          <Link
+            href="/get-started/weight-loss"
+            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-brand text-white text-[13px] font-semibold hover:brightness-110 transition-all"
+          >
+            Get Started
+          </Link>
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            className="relative w-7 h-5 flex flex-col justify-between cursor-pointer"
+          >
           <span
             className={`block h-[1.5px] bg-white transition-all duration-300 origin-left ${
               open ? "rotate-45 translate-y-[1px] w-7" : "w-7"
@@ -55,7 +62,8 @@ export default function Header() {
               open ? "-rotate-45 -translate-y-[1px] w-7" : "w-6 ml-auto"
             }`}
           />
-        </button>
+          </button>
+        </div>
       </div>
 
       {/* Slide-down menu */}

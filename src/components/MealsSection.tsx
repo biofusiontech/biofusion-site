@@ -13,7 +13,7 @@ export default function MealsSection() {
       subheading="Skip the hassle of meal planning and prepping"
       description="BioFusion Meals is the perfect partner for your GLP-1 journey—delivering chef-prepared, medically aligned nutrition designed to help you lose fat while preserving muscle."
       ctaText="Get Started"
-      ctaHref="#"
+      ctaHref="/get-started/meals"
       features={[
         "Chef-made, portion-controlled",
         "Weekly rotating meals",
